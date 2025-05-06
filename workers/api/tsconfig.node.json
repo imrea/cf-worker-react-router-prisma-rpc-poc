@@ -1,0 +1,7 @@
+{
+  "extends": ["./tsconfig.base.json"],
+  "compilerOptions": {
+    "types": ["@types/node"]
+  },
+  "include": ["vite.config.ts", "prisma.config.ts", "__tests__"]
+}

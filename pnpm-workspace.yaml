@@ -1,0 +1,13 @@
+packages:
+  - apps/*
+  - packages/*
+  - workers/*
+onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - '@prisma/client'
+  - '@prisma/engines'
+  - core-js-pure
+  - esbuild
+  - prisma
+  - sharp
+  - workerd

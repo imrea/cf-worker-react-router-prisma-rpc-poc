@@ -1,0 +1,53 @@
+{
+  "name": "cf-worker-react-router-prisma-rpc",
+  "private": true,
+  "scripts": {
+    "clean": "pnpx del-cli \"**/.turbo\" \"**/dist\" \"**/build\" \"**/.wrangler\" \"!**/api/.wrangler/**\" \"**/.react-router\" \"**/prisma/client/\" \"**/*.tsbuildinfo\"",
+    "preclean:full": "pnpm run clean",
+    "clean:full": "pnpx del-cli \"**/node_modules\"",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "check-types": "turbo run check-types",
+    "typecheck": "turbo run typecheck",
+    "deps:list": "syncpack list",
+    "deps:fix": "syncpack fix-mismatches",
+    "deps:up": "syncpack update"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
+    "del-cli": "^6.0.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "syncpack": "^13.0.4",
+    "turbo": "^2.5.2",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39",
+  "engines": {
+    "node": ">=23"
+  },
+  "syncpack": {
+    "versionGroups": [
+      {
+        "label": "Use workspace protocol for local packages",
+        "dependencies": [
+          "$LOCAL"
+        ],
+        "dependencyTypes": [
+          "dev",
+          "prod"
+        ],
+        "pinVersion": "workspace:*"
+      }
+    ]
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "wrangler": "^4.6.0"
+      }
+    }
+  }
+}
