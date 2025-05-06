@@ -1,4 +1,4 @@
-# Worker + D1 + RPC + React Router + Prisma + RPC
+# Worker + D1 + RPC + React Router + Prisma + Vite + Cloudflare Vite Plugin + Wrangler
 
 [![architecture](architecture.png)]()
 
@@ -6,6 +6,35 @@ A little POC setup with Vite and TurboRepo to demonstrate a decoupled architectu
 
 The goal was to create an Object Capability Model, where instead of passing authentication info / tokens, an implicit capabability or collection of available capabilites is returned.
 This provides typesafety, simplifies explicit permission checking, and executing processes that could throw due to lack of permissions.
+
+### Spinning up
+
+Install dependencies in `root`:
+
+```sh
+pnpm i
+```
+
+Set up and seed D1 from `workers/api`:
+
+```sh
+cd workers/api && pnpm db:reset
+```
+
+Spin up dev server from `workers/app`:
+
+```sh
+cd ../app && pnpm dev
+```
+
+Open [http://localhost:5173/](http://localhost:5173/) and check Terminal console logs. You should see something like
+
+```
+Hello from Public scope
+Hello, sc9n9sdblnwv5ibcvcu0o9bf, from Private scope.
+There are 2 Users
+Is admin: false
+```
 
 ### Example
 
@@ -49,7 +78,7 @@ let api = API.authorize(user)
 // `deleteUser` method might not be available, it's existence
 // in itself denotes the cabability
 await api.deleteUser?.('123')
-console.log('User is deleted')
+console.log('User is deleted') // If the capability is present, otherwise failing silently
 
 // OR we can check for explicit permissions too
 if (!api.deleteUser)
